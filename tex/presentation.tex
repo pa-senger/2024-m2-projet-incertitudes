@@ -8,8 +8,8 @@
 \usepackage{xcolor}
 \usepackage{multimedia}
 \usepackage[backend=biber,style=alphabetic]{biblatex} % Bibliography management
-\addbibresource{references.bib} % Bibliography file
-
+\addbibresource{references.bib}
+\graphicspath{{tex/}}
 \colorlet{punct}{red!60!black}
 \definecolor{background}{RGB}{240, 248, 255}
 \definecolor{delim}{RGB}{20,105,176}
@@ -152,6 +152,14 @@ Modélisation d'un flux routier}
   \end{itemize}
 \end{frame}
 
+\begin{frame}{Critères de formation}
+  \begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/traffic_jam_mit.png}
+    \caption{Formation d'un bouchon \cite{trafficJamMIT}}
+  \end{figure}
+\end{frame}
+
 \begin{frame}{Temps de dissipation}
   \begin{figure}
     \centering
@@ -164,7 +172,7 @@ Modélisation d'un flux routier}
   \begin{figure}
     \centering
     \includegraphics[width=0.8\textwidth]{images/sobol1.png}
-    \caption{Indices de Sobol via une simulation Monte-Carlo (OpenTURNS)}
+    \caption{Indices de Sobol via une simulation Monte-Carlo (OpenTURNS\cite{baudinOpenTURNSIndustrialSoftware2016})}
   \end{figure}
 \end{frame}
 
@@ -180,7 +188,7 @@ Modélisation d'un flux routier}
   \begin{figure}
     \centering
     \includegraphics[width=0.8\textwidth]{images/shapley.png}
-    \caption{Indices de Shapley via un metamodel (MLP)}
+    \caption{Indices de Shapley via un metamodel MLP (SHAP\cite{SHAP})}
   \end{figure}
 \end{frame}
 
