@@ -1,0 +1,27 @@
+== 1  
+Dans ce projet d'incertitude, on se propose d'étudier la modélisation d'un flux routier. Comme modèle numérique, on utilise l'équation de Burgers, qui est donc une EDP de transport non-linéaire. La solution rho est la densité d'usagers sur la route. Comme condition initiale, on utilise un problème de Riemann qui est caractérisé par cette discontinuité entre deux états, ici rin et rout, la densité à gauche et à droite de xc respectivement.
+
+== 2  
+Dans le cas où rin est plus grand que rout, c'est-à-dire lorsque la densité est plus grande à gauche qu'à droite dans le problème de Riemann, on observe dans la solution qu'il y a une transition douce entre les deux états. Ce qui correspond plutôt à une décongestion du trafic.
+
+= 3  
+Et dans le cas où rin est plus petit que rout, c'est-à-dire lorsque le trafic devient très dense d'un coup, là on observe plutôt un choc dans la solution, ce qui pourrait correspondre à un bouchon. Et donc c'est plutôt ce cas qui va nous intéresser aujourd'hui.
+
+== 4  
+Donc les objectifs vont être de savoir si ...
+
+== 5  
+Alors déjà, il faut définir ce qui caractérise un bouchon et comment savoir s'il s'est dissipé après un certain temps. Je pense qu'il est assez clair que le bouchon est caractérisé par un choc dans la solution, comme ici.  
+Pour savoir si le choc s'est dissipé, on peut regarder si la solution s'est complètement, ou presque complètement, lissée. Ou alors, on peut être dans le cas où il y a toujours une différence de densité dans la solution mais avec une transition plus douce entre ces deux états, et pour cela, on peut regarder le gradient au niveau de cette transition.
+
+== 6  
+Avec ces critères, on peut faire des simulations pour déterminer la loi de Y, le temps de dissipation du bouchon. On voit que dans pas mal de cas, le bouchon va se dissiper très vite, voire instantanément, ce qui, je pense, est assez réaliste. Si on a très peu de différence entre rin et rout, le bouchon ne va pas se former. Et à contrario, si on a une grande différence entre rin et rout, le bouchon ne va pas se dissiper de temps long. Et entre ces cas extrêmes, on a des cas intermédiaires ou le bouchon se dissipe avec une moyenne d'environ 20 unités de temps.
+
+== 7  
+On peut s'intéresser ensuite aux indices de Sobol, qui nous donnent de l'information sur l'importance des paramètres d'entrée sur la sortie. Si on regarde les indices du premier ordre en rouge, on voit que c'est plutôt vmax qui importe le plus. Si la vitesse maximale est grande ca va aider à la decongestion du bouchon. Mais si on regarde les indices totaux, qui prennent en compte l'interaction entre les variables, on voit que c'est plutôt la densité à gauche et à droite qui importe le plus. On remarque aussi qu'on a des intervalles de confiance assez larges, sûrement dû au fait qu'on a un nombre de simulations assez limité, car le calcul est assez coûteux.
+
+== 8  
+Pour pallier ce problème, on peut utiliser des méthodes d'approximation, comme un métamodèle. Ici, on utilise un réseau de neurones de type MLP qu'on a préalablement entraîné. Cela nous permet de faire des simulations beaucoup plus rapidement et donc de pouvoir ce permettre d'en faire beaucoup plus. On voit que les indices de Sobol sont assez proches de ceux obtenus avec les simulations directes, ce qui est plutôt rassurant. On voit aussi que les intervalles de confiance sont beaucoup plus petits, ce qui est un avantage non négligeable.
+
+== 9  
+Finalement, on peut regarder les indices de Shapley, qui nous donnent de l'information sur l'importance des variables d'entrée sur la sortie, mais en prenant en compte toutes les combinaisons possibles de variables. On voit que c'est plutôt la densité à gauche et à droite qui importe le plus, ce qui est assez cohérent avec les indices de Sobol.
